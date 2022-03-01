@@ -1,0 +1,18 @@
+:root {
+  /* colors */
+  --dark-grey: #303030;
+  --grey: #707070;
+  --light-grey: #9C9C9C;
+  --lightest-grey: #D1D1D1;
+  --dark-red: #C60E2E;
+  --red: #E4163A;
+  --light-red: #FF5761;
+  --lightest-red: #FF768E;
+  --blue: #344472;
+}
+
+/* media-points */
+$desktop: 1024px;
+$tablet: 768px;
+$mobile-big: 425px;
+$mobile-small: 320px;
