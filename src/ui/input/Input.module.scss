@@ -1,0 +1,52 @@
+.Input {
+  font-weight: 500;
+
+  .Title {
+    color: var(--grey);
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  input {
+    height: 40px;
+    max-width: 366px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: var(--radius-small);
+    background-color: var(--lightest-grey1);
+    color: var(--dark-grey);
+    transition: all var(--duration) var(--timing-func);
+
+    &:hover {
+      background-color: var(--lightest-grey);
+    }
+
+    &:focus {
+      background-color: var(--lightest-grey1);
+      box-shadow: 0 0 5px #D9D9D9;
+    }
+
+    &:disabled {
+      color: var(--lightest-grey);
+    }
+
+    &[disabled]:hover {
+      background-color: var(--lightest-grey1);
+    }
+  }
+
+  .Filed {
+    box-shadow: none !important;
+  }
+
+  .Error {
+    border: 1px solid var(--lightest-red);
+  }
+
+  .ErrorText {
+    color: var(--lightest-red);
+    font-size: 12px;
+    margin-top: 5px;
+  }
+}

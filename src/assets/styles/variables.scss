@@ -4,11 +4,19 @@
   --grey: #707070;
   --light-grey: #9C9C9C;
   --lightest-grey: #D1D1D1;
+  --lightest-grey1: #F6F6F6;
   --dark-red: #C60E2E;
   --red: #E4163A;
   --light-red: #FF5761;
   --lightest-red: #FF768E;
   --blue: #344472;
+
+  /* radius */
+  --radius-small: 4px;
+
+  /* transition */
+  --duration: 0.2s;
+  --timing-func: ease-in-out;
 }
 
 /* media-points */
