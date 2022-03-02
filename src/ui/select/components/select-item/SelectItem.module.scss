@@ -1,0 +1,23 @@
+.SelectItem {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  color: var(--light-grey);
+  cursor: pointer;
+  transition: all var(--duration) var(--timing-func);
+
+  &:not(:last-child) {
+    border-bottom: 0.5px solid var(--lightest-grey);
+  }
+
+  &:hover {
+    background-color: var(--lightest-red);
+    color: white;
+  }
+
+  &:active {
+    background-color: var(--dark-red);
+    color: white;
+  }
+}
