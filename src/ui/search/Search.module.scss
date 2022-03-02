@@ -1,0 +1,33 @@
+.Search {
+  position: relative;
+  max-width: 364px;
+  width: 100%;
+
+  input {
+    background: #FFFFFF;
+    border: 0.5px solid var(--lightest-grey);
+    border-radius: var(--radius-small);
+    width: 100%;
+    height: 40px;
+    padding: 0 40px 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-grey);
+
+    &::placeholder {
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--grey);
+    }
+  }
+
+  i {
+    &::before {
+      position: absolute;
+      font-size: 20px;
+      right: -40px;
+      top: calc(50% - 20px / 2);
+      color: #DADADA;
+    }
+  }
+}
