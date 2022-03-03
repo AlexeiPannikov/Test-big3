@@ -1,0 +1,60 @@
+.Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 365px;
+  width: 100%;
+  height: 40px;
+  background-color: var(--red);
+  color: white;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all var(--duration) var(--timing-func);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--light-red);
+  }
+
+  &:active {
+    background-color: var(--dark-red);
+  }
+
+  &:disabled {
+    background-color: var(--lightest-grey1);
+    color: var(--lightest-grey);
+    cursor: default;
+
+    &:hover, &:active {
+      background-color: var(--lightest-grey1);
+    }
+  }
+}
+
+.Add {
+  max-width: 104px;
+}
+
+.Cancel {
+  max-width: 171px;
+  color: var(--light-grey);
+  background-color: white;
+  border: 1px solid var(--light-grey);
+
+  &:hover {
+    background-color: var(--lightest-grey);
+  }
+
+  &:active {
+    background-color: var(--light-grey);
+    border: 1px solid var(--grey);
+    color: gray;
+  }
+
+  &:disabled {
+    background-color: var(--lightest-grey1);
+    border: 1px solid var(--light-grey);
+    color: var(--lightest-grey);
+  }
+}

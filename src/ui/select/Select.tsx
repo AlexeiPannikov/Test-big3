@@ -8,9 +8,10 @@ import { useClickOutside } from '../../hooks/useClickOutside'
 
 interface IProps {
     list: SelectItemModel[]
+    onSelect?: (value: string) => void
 }
 
-const Select: FC<IProps> = ({ list }) => {
+const Select: FC<IProps> = ({ list, onSelect }) => {
     const [open, setOpen] = useState(false)
     const [innerList, setInnerList] = useState([...list])
     const [activeItem, setActiveItem] = useState(new SelectItemModel())
@@ -33,11 +34,7 @@ const Select: FC<IProps> = ({ list }) => {
     const setActive = useCallback(
         (text: string) => {
             const mappedList = innerList.slice().map((item) => {
-                if (item.text === text) {
-                    item.isActive = true
-                } else {
-                    item.isActive = false
-                }
+                item.isActive = item.text === text;
                 return item
             })
             setInnerList([...mappedList])
@@ -50,7 +47,12 @@ const Select: FC<IProps> = ({ list }) => {
 
     function getActiveItem() {
         const foundItem = innerList.find((item) => item.isActive)
-        if (foundItem) setActiveItem(foundItem)
+        if (foundItem) {
+            setActiveItem(foundItem)
+            if (onSelect) {
+                onSelect(foundItem.text)
+            }
+        }
     }
 
     useEffect(() => {
