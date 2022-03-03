@@ -34,7 +34,7 @@ const Select: FC<IProps> = ({ list, onSelect }) => {
     const setActive = useCallback(
         (text: string) => {
             const mappedList = innerList.slice().map((item) => {
-                item.isActive = item.text === text;
+                item.isActive = item.text === text
                 return item
             })
             setInnerList([...mappedList])

@@ -1,0 +1,14 @@
+@import "../../assets/styles/variables.scss";
+
+.Logo {
+  cursor: pointer;
+  display: block;
+  max-width: 191px;
+  @media (max-width: $mobile-big) {
+    max-width: 137px;
+  }
+
+  img {
+    width: 100%;
+  }
+}
