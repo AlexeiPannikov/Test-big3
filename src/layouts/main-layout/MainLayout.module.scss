@@ -1,0 +1,17 @@
+.MainLayout {
+  width: 100%;
+  height: 100%;
+  background-color: var(--layout-back);
+  display: flex;
+  flex-direction: column;
+
+  .SidebarMainWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    .Main {
+      flex: 1 1 100%;
+    }
+  }
+}

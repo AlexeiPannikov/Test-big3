@@ -1,0 +1,14 @@
+.SignOut {
+  color: var(--lightest-red);
+
+  i:before {
+    font-size: 30px;
+    color: inherit;
+    cursor: pointer;
+    transition: all var(--duration) var(--timing-func);
+  }
+
+  i:hover:before {
+    color: var(--red);
+  }
+}
