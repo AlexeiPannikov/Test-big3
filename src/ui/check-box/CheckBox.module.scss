@@ -1,0 +1,74 @@
+.CheckBox {
+
+  input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+
+    &:not(:disabled):not(:checked) + span:hover::before {
+      border-color: var(--red);
+    }
+
+    &:checked + span::before {
+      background-color: var(--red);
+      border-color: var(--red);
+      background-image: url("../../assets/icons/checkbox.svg");
+    }
+
+    &:disabled + span::before {
+      border-color: var(--light-grey);
+      background-color: var(--lightest-grey1);
+      color: var(--light-grey);
+      cursor: default;
+    }
+  }
+
+  .Text {
+    display: flex;
+    align-items: center;
+    color: var(--grey);
+    transition: all var(--duration) var(--timing-func);
+
+    &:before {
+      cursor: pointer;
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--light-grey);
+      border-radius: var(--radius-small);
+      margin-right: 10px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 11px;
+      transition: all var(--duration) var(--timing-func);
+    }
+  }
+}
+
+.Error {
+  input {
+
+    &:not(:disabled):not(:checked) + span:hover::before {
+      border-color: var(--lightest-red);
+    }
+
+    &:checked + span::before {
+      border-color: var(--lightest-red);
+    }
+  }
+
+  .Text {
+    color: var(--lightest-red);
+
+    &:before {
+      border-color: var(--lightest-red);
+
+    }
+  }
+
+  .ErrorText {
+    color: var(--lightest-red);
+    margin-top: 8px;
+  }
+}
