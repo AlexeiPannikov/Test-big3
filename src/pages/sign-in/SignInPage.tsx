@@ -4,12 +4,14 @@ import cl from './SignInPage.module.scss'
 import Input from '../../ui/input/Input'
 import Button from '../../ui/button/Button'
 import CustomLink from '../../ui/custom-link/CustomLink'
+/* eslint-disable react/jsx-props-no-spreading */
 
 const SignInPage = () => {
-    const { handleSubmit } = useForm()
+    const hookForm = useForm()
+    const { handleSubmit } = hookForm
 
-    const signIn = () => {
-        console.log('+++++++++++')
+    const signIn = (data: any) => {
+        console.log(data)
     }
 
     return (
@@ -20,12 +22,14 @@ const SignInPage = () => {
                     <Input
                         title="Login"
                         name="login"
+                        formHook={hookForm}
                         errorText="Wrong login. Please, try again."
                         className={cl.Margin}
                     />
                     <Input
                         title="Password"
                         name="password"
+                        formHook={hookForm}
                         errorText="Wrong password. Please, try again."
                         type="password"
                         className={cl.Margin}

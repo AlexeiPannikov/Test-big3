@@ -1,4 +1,5 @@
 import React from 'react'
+import { useForm } from 'react-hook-form'
 import cl from './SignUpPage.module.scss'
 import Input from '../../ui/input/Input'
 import CheckBox from '../../ui/check-box/CheckBox'
@@ -8,6 +9,7 @@ import CustomLink from '../../ui/custom-link/CustomLink'
 
 const SignUpPage = () => {
     const checkBoxData = new CheckBoxModel({ text: 'I accept the agreement' })
+    const hookForm = useForm()
 
     const checkBoxHandler = (isChecked: boolean) => {
         console.log(isChecked)
@@ -22,17 +24,29 @@ const SignUpPage = () => {
             <section className={cl.LeftCol}>
                 <form className={cl.Form}>
                     <h1 className={cl.Title}>Sign Up</h1>
-                    <Input title="Name" name="name" className={cl.Margin} />
-                    <Input title="Login" name="login" className={cl.Margin} />
+                    <Input
+                        formHook={hookForm}
+                        title="Name"
+                        name="name"
+                        className={cl.Margin}
+                    />
+                    <Input
+                        formHook={hookForm}
+                        title="Login"
+                        name="login"
+                        className={cl.Margin}
+                    />
                     <Input
                         title="Password"
                         name="password"
+                        formHook={hookForm}
                         type="password"
                         className={cl.Margin}
                     />
                     <Input
                         title="Enter your password again"
                         name="password2"
+                        formHook={hookForm}
                         type="password"
                         className={cl.Margin}
                     />

@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
 import classNames from 'classnames/bind'
-import { useForm } from 'react-hook-form'
+import { UseFormReturn } from 'react-hook-form'
 import cl from './Input.module.scss'
 import { usePressButton } from '../../hooks/usePressButton'
 /* eslint-disable react/jsx-props-no-spreading */
@@ -14,6 +14,7 @@ interface IProps {
     disabled?: boolean
     onChange?: (value?: string) => void
     onPressEnter?: (value?: any) => void
+    formHook: UseFormReturn<Record<string, any>, any>
 }
 
 const Input: FC<IProps> = ({
@@ -25,17 +26,14 @@ const Input: FC<IProps> = ({
     disabled,
     onChange,
     onPressEnter,
+    formHook,
 }) => {
     const [text, setText] = useState('')
     const [innerType, setInnerType] = useState(type)
-    const {
-        register,
-        formState: { errors },
-    } = useForm()
 
     const inputClass = classNames({
         [cl.Fill]: !!text,
-        [cl.Error]: errors.message,
+        [cl.Error]: formHook.formState.errors?.[name],
     })
     const presButtonHandler = usePressButton()
 
@@ -62,18 +60,19 @@ const Input: FC<IProps> = ({
     }
 
     return (
-        <div className={`${cl.Input} ${className}`}>
+        <label htmlFor={name} className={`${cl.Input} ${className}`}>
             {title && <div className={cl.Title}>{title}</div>}
             <div className={cl.Wrap}>
                 <input
-                    onKeyPress={(e) => clickButtonHandler(e)}
+                    id={name}
                     className={inputClass}
                     type={innerType || 'text'}
-                    disabled={disabled}
-                    {...register(name as `${string}`, {
+                    {...formHook.register(name as any, {
                         required: errorText,
                     })}
+                    onKeyPress={(e) => clickButtonHandler(e)}
                     onChange={(e) => changeHandler(e)}
+                    disabled={disabled}
                 />
                 {type === 'password' && (
                     <div
@@ -91,8 +90,10 @@ const Input: FC<IProps> = ({
                     </div>
                 )}
             </div>
-            {errors?.[name] && <div className={cl.ErrorText}>{errorText}</div>}
-        </div>
+            {formHook.formState.errors?.[name] && (
+                <div className={cl.ErrorText}>{errorText}</div>
+            )}
+        </label>
     )
 }
 
