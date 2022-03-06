@@ -12,7 +12,6 @@ export function usePressButton<T>() {
     return function (
         key: string | number,
         handler: (data?: T) => void,
-        e?: React.KeyboardEvent,
         data?: T
     ): boolean {
         const numKey = Number(key)

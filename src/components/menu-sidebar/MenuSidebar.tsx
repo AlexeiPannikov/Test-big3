@@ -7,7 +7,7 @@ const MenuSidebar = () => {
         isActive ? `${cl.Active}` : ''
 
     return (
-        <div className={cl.MenuSidebar}>
+        <nav className={cl.MenuSidebar}>
             <NavLink className={setClass} to="/teams">
                 <i className="icon icon-group-person" />
                 Teams
@@ -16,7 +16,7 @@ const MenuSidebar = () => {
                 <i className="icon icon-person" />
                 Players
             </NavLink>
-        </div>
+        </nav>
     )
 }
 

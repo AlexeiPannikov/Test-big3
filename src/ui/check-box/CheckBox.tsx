@@ -6,16 +6,24 @@ import { CheckBoxModel } from './CheckBoxModel'
 interface IProps {
     data: CheckBoxModel
     error?: string
+    className?: string
     onChange: (value: boolean) => void
     disabled?: boolean
 }
 
-const CheckBox: FC<IProps> = ({ data, error, onChange, disabled }) => {
+const CheckBox: FC<IProps> = ({
+    data,
+    error,
+    className,
+    onChange,
+    disabled,
+}) => {
     const [isChecked, setIsChecked] = useState(data.isChecked)
 
     const checkBoxClasses = classnames({
         [cl.CheckBox]: true,
         [cl.Error]: !!error && !isChecked,
+        [className || '']: className,
     })
 
     const checkHandler = (value: boolean) => {

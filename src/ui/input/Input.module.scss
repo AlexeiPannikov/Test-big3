@@ -1,5 +1,6 @@
 .Input {
   font-weight: 500;
+  max-width: 366px;
 
   .Title {
     color: var(--grey);
@@ -7,37 +8,48 @@
     margin-bottom: 5px;
   }
 
-  input {
-    height: 40px;
-    max-width: 366px;
-    width: 100%;
-    padding: 0 12px;
-    font-size: 14px;
-    font-weight: 500;
-    border-radius: var(--radius-small);
-    background-color: var(--lightest-grey1);
-    color: var(--dark-grey);
-    transition: all var(--duration) var(--timing-func);
+  .Wrap {
+    position: relative;
 
-    &:hover {
-      background-color: var(--lightest-grey);
-    }
-
-    &:focus {
+    input {
+      height: 40px;
+      max-width: 366px;
+      width: 100%;
+      padding: 0 12px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: var(--radius-small);
       background-color: var(--lightest-grey1);
-      box-shadow: 0 0 5px #D9D9D9;
+      color: var(--dark-grey);
+      transition: all var(--duration) var(--timing-func);
+
+      &:hover {
+        background-color: var(--lightest-grey);
+      }
+
+      &:focus {
+        background-color: var(--lightest-grey1);
+        box-shadow: 0 0 5px #D9D9D9;
+      }
+
+      &:disabled {
+        color: var(--lightest-grey);
+      }
+
+      &[disabled]:hover {
+        background-color: var(--lightest-grey1);
+      }
     }
 
-    &:disabled {
-      color: var(--lightest-grey);
-    }
-
-    &[disabled]:hover {
-      background-color: var(--lightest-grey1);
+    .Eye {
+      position: absolute;
+      right: 10px;
+      top: calc(50% - 7px);
+      cursor: pointer;
     }
   }
 
-  .Filed {
+  .Fill {
     box-shadow: none !important;
   }
 
