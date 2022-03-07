@@ -10,7 +10,7 @@ interface IProps {
     name: string
     type?: string
     className?: string
-    errorText?: string
+    required?: boolean
     disabled?: boolean
     onChange?: (value?: string) => void
     onPressEnter?: (value?: any) => void
@@ -22,7 +22,7 @@ const Input: FC<IProps> = ({
     name,
     type,
     className,
-    errorText,
+    required,
     disabled,
     onChange,
     onPressEnter,
@@ -45,6 +45,7 @@ const Input: FC<IProps> = ({
     function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
         const { value } = e.target
         setText(value)
+        formHook.clearErrors(name as any)
         if (!onChange) return
         onChange(value)
     }
@@ -68,7 +69,7 @@ const Input: FC<IProps> = ({
                     className={inputClass}
                     type={innerType || 'text'}
                     {...formHook.register(name as any, {
-                        required: errorText,
+                        required: required ? `Enter ${name}` : false,
                     })}
                     onKeyPress={(e) => clickButtonHandler(e)}
                     onChange={(e) => changeHandler(e)}
@@ -91,7 +92,9 @@ const Input: FC<IProps> = ({
                 )}
             </div>
             {formHook.formState.errors?.[name] && (
-                <div className={cl.ErrorText}>{errorText}</div>
+                <div className={cl.ErrorText}>
+                    {formHook.formState.errors?.[name].message}
+                </div>
             )}
         </label>
     )

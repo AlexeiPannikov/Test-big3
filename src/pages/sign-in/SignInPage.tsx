@@ -1,17 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import cl from './SignInPage.module.scss'
 import Input from '../../ui/input/Input'
 import Button from '../../ui/button/Button'
 import CustomLink from '../../ui/custom-link/CustomLink'
-/* eslint-disable react/jsx-props-no-spreading */
+import { signInThunk } from '../../modules/authorization/signInThunk'
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks'
+import { resetIsSuccess } from '../../modules/authorization/authorizationSlice'
 
 const SignInPage = () => {
     const hookForm = useForm()
-    const { handleSubmit } = hookForm
+    const { handleSubmit, setError } = hookForm
+    const dispatch = useAppDispatch()
+    const { error } = useAppSelector((state) => state.authorization)
 
-    const signIn = (data: any) => {
-        console.log(data)
+    useEffect(() => {
+        if (error) {
+            setError('login', { message: '' })
+            setError('password', {
+                message: 'Wrong login or password. Please, try again.',
+            })
+        }
+    }, [error])
+
+    const signIn = async (data: any) => {
+        dispatch(signInThunk(data))
     }
 
     return (
@@ -23,14 +36,14 @@ const SignInPage = () => {
                         title="Login"
                         name="login"
                         formHook={hookForm}
-                        errorText="Wrong login. Please, try again."
+                        required
                         className={cl.Margin}
                     />
                     <Input
                         title="Password"
                         name="password"
                         formHook={hookForm}
-                        errorText="Wrong password. Please, try again."
+                        required
                         type="password"
                         className={cl.Margin}
                     />

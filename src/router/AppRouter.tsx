@@ -5,6 +5,7 @@ import TeamsPage from '../pages/teams/TeamsPage'
 import PlayersPage from '../pages/players/PlayersPage'
 import SignUpPage from '../pages/sign-up/SignUpPage'
 import SignInPage from '../pages/sign-in/SignInPage'
+import ErrorPage from '../pages/404/ErrorPage'
 
 const AppRouter = () => {
     const location = useLocation()
@@ -24,6 +25,7 @@ const AppRouter = () => {
                 <Route path="/teams" element={<TeamsPage />} />
                 <Route path="/players" element={<PlayersPage />} />
             </Route>
+            <Route path="*" element={<ErrorPage />} />
         </Routes>
     )
 }

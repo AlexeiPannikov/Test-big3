@@ -1,34 +1,74 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-interface ICountry {
+interface IUser {
+    name: string
+    avatarUrl: string
+    token: string
+}
+
+interface IAuthorization {
     isLoading: boolean
-    user: string
+    isSuccess: boolean
+    user: IUser
     error: string | null
 }
 
-const initialState: ICountry = {
+const initialState: IAuthorization = {
     isLoading: false,
-    user: '',
+    isSuccess: false,
+    user: { name: '', avatarUrl: '', token: '' } as IUser,
     error: null,
 }
 
 const AuthSlice = createSlice({
-    name: 'allCountries',
+    name: 'authorization',
     initialState,
     reducers: {
-        gettingUser(state) {
+        startSignIn(state) {
             state.isLoading = true
+            state.isSuccess = false
         },
-        getUserSuccess(state, action: PayloadAction<string>) {
+        signInSuccess(state, action: PayloadAction<IUser>) {
             state.isLoading = false
             state.user = action.payload
+            state.isSuccess = true
+            state.error = ''
+            localStorage.setItem('token', state.user.token)
         },
-        getUserError(state, action: PayloadAction<string>) {
+        signInError(state, action: PayloadAction<string>) {
             state.isLoading = false
+            state.isSuccess = false
             state.error = action.payload
+        },
+        startSignUp(state) {
+            state.isLoading = true
+            state.isSuccess = false
+        },
+        signUpSuccess(state, action: PayloadAction<IUser>) {
+            state.isLoading = false
+            state.user = action.payload
+            state.isSuccess = true
+            state.error = ''
+            localStorage.setItem('token', state.user.token)
+        },
+        signUpError(state, action: PayloadAction<string>) {
+            state.isLoading = false
+            state.isSuccess = false
+            state.error = action.payload
+        },
+        resetIsSuccess(state) {
+            state.isSuccess = false
         },
     },
 })
 
 export default AuthSlice.reducer
-export const { gettingUser, getUserSuccess, getUserError } = AuthSlice.actions
+export const {
+    startSignIn,
+    signInSuccess,
+    signInError,
+    startSignUp,
+    signUpSuccess,
+    signUpError,
+    resetIsSuccess,
+} = AuthSlice.actions
