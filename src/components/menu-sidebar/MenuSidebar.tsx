@@ -10,11 +10,11 @@ const MenuSidebar = () => {
         <nav className={cl.MenuSidebar}>
             <NavLink className={setClass} to="/teams">
                 <i className="icon icon-group-person" />
-                Teams
+                <span>Teams</span>
             </NavLink>
             <NavLink className={setClass} to="/players">
                 <i className="icon icon-person" />
-                Players
+                <span>Players</span>
             </NavLink>
         </nav>
     )

@@ -5,6 +5,7 @@ const SignOut = () => {
     return (
         <div className={cl.SignOut}>
             <i className="icon icon-input" />
+            <span>Sign out</span>
         </div>
     )
 }

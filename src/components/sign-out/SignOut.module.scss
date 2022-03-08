@@ -1,11 +1,23 @@
+@import "../../assets/styles/variables.scss";
+
 .SignOut {
   color: var(--lightest-red);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: $tablet) {
+    flex-direction: row;
+  }
 
   i:before {
     font-size: 30px;
     color: inherit;
     cursor: pointer;
     transition: all var(--duration) var(--timing-func);
+    margin: 10px 0 0 0;
+    @media (max-width: $tablet) {
+      margin: 0 10px 0 20px;
+    }
   }
 
   i:hover:before {

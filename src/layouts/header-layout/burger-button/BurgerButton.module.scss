@@ -1,0 +1,27 @@
+@import "../../../assets/styles/variables.scss";
+
+.BurgerButton {
+  width: 18px;
+  height: 18px;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+
+  div {
+    height: 2px;
+    width: 100%;
+    background-color: var(--grey);
+
+    &:first-child {
+      margin-top: 3px;
+    }
+
+    &:nth-child(2) {
+      margin: 3px 0;
+    }
+
+    &:last-child {
+
+    }
+  }
+}

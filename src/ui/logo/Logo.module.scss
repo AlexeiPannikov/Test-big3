@@ -1,14 +1,18 @@
 @import "../../assets/styles/variables.scss";
 
-.Logo {
-  cursor: pointer;
-  display: block;
-  max-width: 191px;
-  @media (max-width: $mobile-big) {
-    max-width: 137px;
-  }
+.LogoWrapper {
 
-  img {
-    width: 100%;
+  .Logo {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    max-width: 191px;
+    @media (max-width: $mobile-big) {
+      max-width: 137px;
+    }
+
+    img {
+      width: 100%;
+    }
   }
 }

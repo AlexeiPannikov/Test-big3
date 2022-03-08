@@ -1,7 +1,13 @@
+@import "../../assets/styles/variables.scss";
+
 .MenuSidebar {
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: $tablet) {
+    height: 100%;
+    padding-left: 20px;
+  }
 
   a {
     display: flex;
@@ -10,6 +16,11 @@
     margin-top: 40px;
     color: var(--light-grey);
     transition: all var(--duration) var(--timing-func);
+    @media (max-width: $tablet) {
+      margin-top: 30px;
+      flex-direction: row;
+      align-items: center;
+    }
 
     i:before {
       font-size: 30px;
@@ -17,10 +28,20 @@
       display: inline-block;
       margin-bottom: 5px;
       transition: all var(--duration) var(--timing-func);
+      @media (max-width: $tablet) {
+        margin: 0;
+        font-size: 25px;
+      }
     }
 
     &:hover, &:hover i:before {
       color: var(--red);
+    }
+
+    span {
+      @media (max-width: $tablet) {
+        margin-left: 10px;
+      }
     }
   }
 
