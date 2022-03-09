@@ -13,10 +13,7 @@ const SignInPage = () => {
     const hookForm = useForm()
     const { handleSubmit, setError } = hookForm
     const dispatch = useAppDispatch()
-    const {
-        isSuccess,
-        error,
-    } = useAppSelector((state) => state.authorization)
+    const { isSuccess, error } = useAppSelector((state) => state.authorization)
     const navigate = useNavigate()
 
     useEffect(() => {
