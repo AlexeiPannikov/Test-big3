@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import cl from './SignInPage.module.scss'
 import Input from '../../ui/input/Input'
 import Button from '../../ui/button/Button'
@@ -12,7 +13,11 @@ const SignInPage = () => {
     const hookForm = useForm()
     const { handleSubmit, setError } = hookForm
     const dispatch = useAppDispatch()
-    const { error } = useAppSelector((state) => state.authorization)
+    const {
+        isSuccess,
+        error,
+    } = useAppSelector((state) => state.authorization)
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (error) {
@@ -22,6 +27,13 @@ const SignInPage = () => {
             })
         }
     }, [error])
+
+    useEffect(() => {
+        if (isSuccess) {
+            navigate('/')
+            dispatch(resetIsSuccess())
+        }
+    }, [isSuccess])
 
     const signIn = async (data: any) => {
         dispatch(signInThunk(data))

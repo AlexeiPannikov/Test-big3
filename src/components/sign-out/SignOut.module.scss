@@ -1,26 +1,33 @@
 @import "../../assets/styles/variables.scss";
 
 .SignOut {
+  font-size: 13px;
   color: var(--lightest-red);
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
+
   @media (max-width: $tablet) {
     flex-direction: row;
   }
 
-  i:before {
-    font-size: 30px;
-    color: inherit;
-    cursor: pointer;
+  span, i:before {
     transition: all var(--duration) var(--timing-func);
+  }
+
+  i:before {
+    font-size: 25px;
+    color: inherit;
     margin: 10px 0 0 0;
     @media (max-width: $tablet) {
       margin: 0 10px 0 20px;
     }
   }
 
-  i:hover:before {
-    color: var(--red);
+  &:hover {
+    i:before, span {
+      color: var(--red);
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import cookies from 'js-cookie'
 
 interface IUser {
     name: string
@@ -33,7 +34,7 @@ const AuthSlice = createSlice({
             state.user = action.payload
             state.isSuccess = true
             state.error = ''
-            localStorage.setItem('token', state.user.token)
+            cookies.set('token', state.user.token)
         },
         signInError(state, action: PayloadAction<string>) {
             state.isLoading = false
@@ -49,7 +50,7 @@ const AuthSlice = createSlice({
             state.user = action.payload
             state.isSuccess = true
             state.error = ''
-            localStorage.setItem('token', state.user.token)
+            cookies.set('token', state.user.token)
         },
         signUpError(state, action: PayloadAction<string>) {
             state.isLoading = false
@@ -58,6 +59,9 @@ const AuthSlice = createSlice({
         },
         resetIsSuccess(state) {
             state.isSuccess = false
+        },
+        resetUser(state) {
+            state = initialState
         },
     },
 })
@@ -71,4 +75,5 @@ export const {
     signUpSuccess,
     signUpError,
     resetIsSuccess,
+    resetUser,
 } = AuthSlice.actions

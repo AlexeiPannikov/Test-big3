@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios'
+import cookies from 'js-cookie'
 
 const BASE_URL = 'http://dev.trainee.dex-it.ru/api/'
 
@@ -11,7 +12,7 @@ $api.interceptors.request.use((config): AxiosRequestConfig<any> => {
     if (config.url === 'Auth/SignIn' || config.url === 'Auth/SignUp')
         return config
     if (config.headers) {
-        config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+        config.headers.Authorization = `Bearer ${cookies.get('token')}`
         return config
     }
     return config

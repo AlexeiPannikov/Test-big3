@@ -40,6 +40,7 @@ const CheckBox: FC<IProps> = ({
                 checked={isChecked}
                 onChange={(e) => checkHandler(e.target.checked)}
                 disabled={disabled}
+                tabIndex={0}
             />
             <span className={cl.Text}>{data.text}</span>
             {error && !isChecked && <div className={cl.ErrorText}>{error}</div>}

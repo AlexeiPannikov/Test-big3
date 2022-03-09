@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import classnames from 'classnames/bind'
 import cl from './Button.module.scss'
 import { ButtonTypesEnum } from './ButtonTypesEnum'
-import { usePressButton } from '../../hooks/usePressButton'
 /* eslint-disable react/button-has-type */
 
 interface IProps {
@@ -28,10 +27,7 @@ const Button: FC<IProps> = ({
         [className || '']: className,
     })
 
-    const presButtonHandler = usePressButton()
-
-    const clickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-        // e.preventDefault()
+    const clickHandler = () => {
         if (!onClick) return
         onClick()
     }
@@ -45,10 +41,11 @@ const Button: FC<IProps> = ({
     return (
         <button
             className={buttonClasses}
-            onClick={(e) => clickHandler(e)}
+            onClick={() => clickHandler()}
             onKeyPress={(e) => pressEnterHandler(e)}
             type={type}
             disabled={disabled}
+            tabIndex={0}
         >
             {children}
         </button>
