@@ -1,0 +1,79 @@
+.FooterTools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  .PaginationContainer {
+    display: flex;
+    align-items: center;
+
+    .PaginationPage {
+      min-width: 40px;
+      height: 40px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: var(--radius-small);
+      margin: 0 2.5px;
+      cursor: pointer;
+      transition: all var(--duration) var(--timing-func);
+
+      .PageLink {
+        flex: 0 0 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--grey);
+      }
+
+      &:hover, &:hover .PageLink {
+        background-color: var(--light-red);
+        color: white;
+        border-radius: var(--radius-small);
+      }
+
+      &:active {
+        background-color: var(--dark-red);
+      }
+    }
+
+    .ActivePage {
+      background-color: var(--red);
+
+      .ActivePageLink {
+        color: white;
+      }
+    }
+
+    .Break {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: inherit;
+      justify-content: center;
+      color: var(--grey);
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .Previous, .Next {
+      width: 30px;
+      height: 40px;
+      cursor: pointer;
+
+      .PreviousLink, .NextLink {
+        background: url("../../assets/icons/arrow.svg") no-repeat left center;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+      .NextLink {
+        justify-content: flex-end;
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react'
-import classNames from 'classnames/bind'
 import cl from './Select.module.scss'
 import { usePressButton } from '../../hooks/usePressButton'
 import SelectList from './components/select-list/SelectList'
 import { SelectItemModel } from './components/select-item/SelectItemModel'
 import { useClickOutside } from '../../hooks/useClickOutside'
+import Arrow from '../arrow/Arrow'
 
 interface IProps {
     list: SelectItemModel[]
@@ -16,10 +16,6 @@ const Select: FC<IProps> = ({ list, onSelect }) => {
     const [innerList, setInnerList] = useState([...list])
     const [activeItem, setActiveItem] = useState(new SelectItemModel())
     const select = useRef(null)
-    const classesArrow = classNames({
-        [cl.Arrow]: true,
-        [cl.Active]: open,
-    })
     const pressButtonHandler = usePressButton()
 
     const openDropdown = () => {
@@ -69,9 +65,7 @@ const Select: FC<IProps> = ({ list, onSelect }) => {
                 role="button"
                 tabIndex={0}
             >
-                <div className={classesArrow}>
-                    <span />
-                </div>
+                <Arrow className={open ? cl.Active : ''} />
             </div>
 
             {open && <SelectList onSelect={setActive} list={innerList} />}
