@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { FC } from 'react'
 import cl from './Search.module.scss'
 
-const Search = () => {
+interface IProps {
+    onChange: (value: string) => void
+}
+
+const Search: FC<IProps> = ({ onChange }) => {
     return (
         <div className={cl.Search}>
-            <input type="text" placeholder="Search..." />
+            <input
+                onChange={(e) => onChange(e.target.value)}
+                type="text"
+                placeholder="Search..."
+            />
             <i className="icon icon-search" />
         </div>
     )

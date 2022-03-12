@@ -1,0 +1,64 @@
+@import "../../assets/styles/variables.scss";
+
+.custom-select {
+  &__control {
+    border: 1px solid var(--lightest-grey) !important;
+    border-radius: var(--radius-small);
+    height: 40px !important;
+    font-size: 14px !important;
+    color: var(--dark-grey) !important;
+    @media (max-width: $mobile-big) {
+      height: 28px !important;
+    }
+
+    &--menu-is-open {
+
+    }
+
+    &--is-focused {
+      box-shadow: none !important;
+    }
+  }
+
+  &__menu {
+    bottom: 100% !important;
+    top: auto !important;
+    border-radius: var(--radius-small) !important;
+
+    &-list {
+      border-radius: var(--radius-small) !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+
+      .custom-select__option {
+        font-size: 14px !important;
+        color: var(--dark-grey) !important;
+        transition: all var(--duration) var(--timing-func);
+
+        &:hover {
+          background-color: var(--lightest-red) !important;
+          color: white !important;
+        }
+
+        &:active {
+          background-color: var(--red) !important;
+          color: white !important;
+        }
+
+        &--is-selected {
+          background-color: transparent !important;
+
+          &:hover {
+            background-color: var(--lightest-red) !important;
+            color: white !important;
+          }
+
+          &:active {
+            background-color: var(--red) !important;
+            color: white !important;
+          }
+        }
+      }
+    }
+  }
+}
