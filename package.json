@@ -28,7 +28,7 @@
     "typescript": "~4.1.5"
   },
   "scripts": {
-    "start": "react-scripts start && npx eslint src --quiet --fix",
+    "start": "npx eslint src --quiet --fix & react-scripts start",
     "build": "react-scripts build",
     "lint": "npx eslint src --quiet --fix"
   },

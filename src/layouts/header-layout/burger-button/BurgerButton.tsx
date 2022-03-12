@@ -13,7 +13,7 @@ const BurgerButton: FC<IProps> = ({ className }) => {
         [cl.BurgerButton]: true,
         [className || '']: !!className,
     })
-    const { isOpen, setIsOpen } = useContext(MobileMenuContext)
+    const { setIsOpen } = useContext(MobileMenuContext)
     const pressEnter = usePressButton()
 
     const burgerButtonHandler = (e?: React.KeyboardEvent<HTMLDivElement>) => {

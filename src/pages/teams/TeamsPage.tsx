@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { log } from 'util'
+import React, { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import PageContainer from '../../components/page-container/PageContainer'
 import cl from './TeamsPage.module.scss'
 import Toolbar from '../../components/toolbar/Toolbar'
@@ -11,16 +11,40 @@ import FooterTools, { ISize } from '../../components/footer-tools/FooterTools'
 import { TeamsService } from '../../api/services/teams-service/TeamsService'
 
 const TeamsPage = () => {
+    const [name, setName] = useState<string>()
+    const [page, setPage] = useState<string>()
+    const [pageSize, setPageSize] = useState<string>()
+
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    useEffect(() => {
+        searchParams.set('name', name)
+        searchParams.set('page', page)
+        searchParams.set('pageSize', pageSize)
+        if (!name) {
+            searchParams.delete('name')
+        }
+        if (!page) {
+            searchParams.delete('page')
+        }
+        if (!pageSize) {
+            searchParams.delete('pageSize')
+        }
+        const params = Object.fromEntries([...searchParams])
+        setSearchParams(params)
+    }, [name, page, pageSize])
+
     const searchChangeHandler = (value: string) => {
-        console.log(value)
+        setName(value)
     }
 
     const pageChangeHandler = (value: number) => {
-        console.log(value)
+        value += 1
+        setPage(value.toString())
     }
 
     const sizeChangeHandler = (data: ISize) => {
-        console.log(data)
+        setPageSize(data.value.toString())
     }
 
     useEffect(() => {

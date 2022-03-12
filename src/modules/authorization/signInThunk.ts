@@ -1,4 +1,3 @@
-import { log } from 'util'
 import { AppDispatch } from '../../core/redux/store'
 import { SignInRequest } from '../../api/services/authorization-service/request/SignInRequest'
 import { signInError, signInSuccess, startSignIn } from './authorizationSlice'

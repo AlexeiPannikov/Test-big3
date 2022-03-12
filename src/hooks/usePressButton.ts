@@ -1,5 +1,3 @@
-import React from 'react'
-
 function startHandler<T>(handler: (data?: T) => void, data?: T) {
     if (data) {
         handler(data)
