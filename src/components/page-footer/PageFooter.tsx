@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import cl from './PageFooter.module.scss'
 
 const PageFooter: FC = ({ children }) => {
-    return <div className={cl.PageFooter}>{children}</div>
+    return <footer className={cl.PageFooter}>{children}</footer>
 }
 
 export default PageFooter

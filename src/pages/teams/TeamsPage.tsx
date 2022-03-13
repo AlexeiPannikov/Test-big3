@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import PageContainer from '../../components/page-container/PageContainer'
-import cl from './TeamsPage.module.scss'
 import Toolbar from '../../components/toolbar/Toolbar'
 import Search from '../../ui/search/Search'
 import Button from '../../ui/button/Button'
 import { ButtonTypesEnum } from '../../ui/button/ButtonTypesEnum'
 import PageFooter from '../../components/page-footer/PageFooter'
 import FooterTools, { ISize } from '../../components/footer-tools/FooterTools'
-import { TeamsService } from '../../api/services/teams-service/TeamsService'
+import { GetTeamsRequest } from '../../api/services/teams-service/request/GetTeamsRequest'
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks'
+import { getTeamsThunk } from '../../modules/teams-module/getTeamsThunk'
+import Content from '../../components/content/Content'
+import TeamCard from './components/team-card/TeamCard'
 
 const TeamsPage = () => {
-    const [name, setName] = useState<string>()
-    const [page, setPage] = useState<string>()
-    const [pageSize, setPageSize] = useState<string>()
+    const [name, setName] = useState<string>('')
+    const [page, setPage] = useState<string>('')
+    const [pageSize, setPageSize] = useState<string>('')
 
     const [searchParams, setSearchParams] = useSearchParams()
+    const dispatch = useAppDispatch()
+    const {
+        response: { count, size, data: teams },
+    } = useAppSelector((state) => state.teams)
 
     useEffect(() => {
         searchParams.set('name', name)
@@ -47,9 +54,24 @@ const TeamsPage = () => {
         setPageSize(data.value.toString())
     }
 
+    const getTeams = () => {
+        const params = Object.fromEntries([...searchParams])
+        if (
+            !(params as GetTeamsRequest).page ||
+            !(params as GetTeamsRequest).pageSize
+        )
+            return
+        dispatch(getTeamsThunk(params))
+    }
+
     useEffect(() => {
-        TeamsService.getTeams().then((r) => console.log(r))
-    }, [])
+        getTeams()
+    }, [searchParams])
+
+    const getPages = (): number => {
+        if (count <= 0 && size <= 0) return 0
+        return Math.ceil(count / size)
+    }
 
     return (
         <PageContainer>
@@ -59,10 +81,14 @@ const TeamsPage = () => {
                     Add +
                 </Button>
             </Toolbar>
-            <div className={cl.TeamPageContent} />
+            <Content>
+                {teams.map((team) => (
+                    <TeamCard key={team.id} team={team} />
+                ))}
+            </Content>
             <PageFooter>
                 <FooterTools
-                    pageCount={10}
+                    pageCount={getPages()}
                     onPageChange={pageChangeHandler}
                     onSizeChange={sizeChangeHandler}
                 />

@@ -28,12 +28,16 @@ const FooterTools: FC<IProps> = ({ pageCount, onPageChange, onSizeChange }) => {
         return JSON.parse(size)
     }
 
+    const getPage = (): number | null => {
+        const page = localStorage.getItem('page')
+        if (!page) return null
+        return Number(page)
+    }
+
     const [currentSize, setCurrentSize] = useState<ISize>(
         getSize() || sizeList[0]
     )
-    const [currentPage, setCurrentPage] = useState<number>(
-        0 || Number(localStorage.getItem('page'))
-    )
+    const [currentPage, setCurrentPage] = useState<number>(getPage() || 0)
 
     useEffect(() => {
         onSizeChange(currentSize)
