@@ -1,7 +1,8 @@
 @import "../../assets/styles/variables.scss";
+@import "../../assets/styles/mixins.scss";
 
 .SignOut {
-  font-size: 13px;
+  font-size: calcFluidFontSize(12, 18, 320, 2560);
   color: var(--lightest-red);
   display: flex;
   flex-direction: column;
@@ -17,7 +18,7 @@
   }
 
   i:before {
-    font-size: 25px;
+    font-size: calcFluidFontSize(20, 30, 320, 2560);
     color: inherit;
     margin: 10px 0 0 0;
     @media (max-width: $tablet) {

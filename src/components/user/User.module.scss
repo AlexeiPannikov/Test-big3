@@ -1,6 +1,8 @@
+@import "../../assets/styles/mixins.scss";
+
 .User {
   color: var(--dark-grey);
-  font-size: 14px;
+  font-size: calcFluidFontSize(12, 18, 320, 2560);
   font-weight: 500;
   display: flex;
   align-items: center;

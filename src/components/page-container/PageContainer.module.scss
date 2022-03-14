@@ -1,5 +1,10 @@
+@import "../../assets/styles/mixins.scss";
+
 .PageContainer {
-  padding: 32px 80px;
+  @include adaptive-value(padding-left, 80, 12, 0);
+  @include adaptive-value(padding-right, 80, 12, 0);
+  @include adaptive-value(padding-top, 32, 16, 0);
+  @include adaptive-value(padding-bottom, 32, 16, 0);
   width: 100%;
   height: 100%;
   display: flex;

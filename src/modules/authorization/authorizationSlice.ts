@@ -35,11 +35,19 @@ const AuthSlice = createSlice({
             state.isSuccess = true
             state.error = ''
             cookies.set('token', state.user.token)
+            localStorage.setItem(
+                'user',
+                JSON.stringify({
+                    name: state.user.name,
+                    avatar: state.user.avatarUrl,
+                })
+            )
         },
         signInError(state, action: PayloadAction<string>) {
             state.isLoading = false
             state.isSuccess = false
             state.error = action.payload
+            localStorage.removeItem('user')
         },
         startSignUp(state) {
             state.isLoading = true

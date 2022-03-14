@@ -34,7 +34,9 @@ const MainLayout = () => {
     return (
         <MobileMenuContext.Provider value={mobileMenuState}>
             <div className={cl.MainLayout}>
-                <HeaderLayout />
+                <div className={cl.HeaderWrap}>
+                    <HeaderLayout />
+                </div>
 
                 <div className={cl.SidebarMainWrapper}>
                     <CSSTransition
@@ -49,7 +51,9 @@ const MainLayout = () => {
                             exitActive: cl.ExitActiveSb,
                         }}
                     >
-                        <SidebarLayout />
+                        <div className={cl.SidebarWrap}>
+                            <SidebarLayout />
+                        </div>
                     </CSSTransition>
 
                     <main className={cl.Main}>

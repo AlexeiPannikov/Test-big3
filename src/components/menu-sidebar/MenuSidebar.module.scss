@@ -1,4 +1,5 @@
 @import "../../assets/styles/variables.scss";
+@import "../../assets/styles/mixins.scss";
 
 .MenuSidebar {
   display: flex;
@@ -23,14 +24,13 @@
     }
 
     i:before {
-      font-size: 30px;
+      font-size: calcFluidFontSize(25, 40, 320, 2560);
       margin-top: 10px;
       display: inline-block;
       margin-bottom: 5px;
       transition: all var(--duration) var(--timing-func);
       @media (max-width: $tablet) {
         margin: 0;
-        font-size: 25px;
       }
     }
 
@@ -39,6 +39,7 @@
     }
 
     span {
+      font-size: calcFluidFontSize(12, 18, 320, 2560);
       @media (max-width: $tablet) {
         margin-left: 10px;
       }

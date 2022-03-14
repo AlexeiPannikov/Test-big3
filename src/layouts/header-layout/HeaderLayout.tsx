@@ -8,7 +8,9 @@ const HeaderLayout = () => {
     return (
         <header className={cl.Header}>
             <BurgerButton className={cl.BurgerButton} />
-            <Logo className={cl.Logo} />
+            <div className={cl.LogoWrapper}>
+                <Logo />
+            </div>
             <User className={cl.User} />
         </header>
     )
