@@ -81,11 +81,13 @@ const TeamsPage = () => {
                     Add +
                 </Button>
             </Toolbar>
-            <Content>
+            {/* <div className={cl.ScrollBox}> */}
+            <Content itemNumber={Number(pageSize)}>
                 {teams.map((team) => (
                     <TeamCard key={team.id} team={team} />
                 ))}
             </Content>
+            {/* </div> */}
             <PageFooter>
                 <FooterTools
                     pageCount={getPages()}

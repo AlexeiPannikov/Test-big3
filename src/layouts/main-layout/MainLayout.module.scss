@@ -7,6 +7,7 @@
   background-color: var(--layout-back);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 
   .HeaderWrap {
     width: 100%;

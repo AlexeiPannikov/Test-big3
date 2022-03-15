@@ -1,4 +1,25 @@
+@import "../../assets/styles/mixins.scss";
+
 .Content {
   width: 100%;
   height: 100%;
+  display: grid;
+  @include adaptive-value(grid-gap, 24, 12, 0);
+  @include adaptive-value(margin-top, 32, 16, 0);
+  @include adaptive-value(margin-bottom, 32, 16, 0);
+}
+
+.Six {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.Twelve {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.TwentyFour {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
 }

@@ -1,3 +1,43 @@
+@import "../../../../assets/styles/mixins.scss";
+
 .TeamCard {
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(121.57deg, #707070 1.62%, #393939 81.02%);
+
+  .ImageBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 1 73%;
+
+    .Img {
+      width: 32%;
+      height: 55%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+
+  .Info {
+    flex: 1 0 27%;
+    max-height: 50%;
+    background-color: var(--dark-grey);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+
+    .Name {
+      color: white;
+      font-size:  calcFluidFontSize(15, 18, 320, 2560);
+    }
+    .Foundation {
+      color: var(--light-grey);
+      font-size:  calcFluidFontSize(13, 14, 320, 2560);
+      margin-top: 10px;
+    }
+  }
 }
