@@ -1,0 +1,15 @@
+@import '../../../../../assets/styles/mixins.scss';
+
+.AddTeamForm {
+  background-color: white;
+  border-radius: 10px;
+  width: 100%;
+  @include adaptive-value(padding-top, 24, 16, 0);
+  @include adaptive-value(padding-left, 32, 16, 0);
+  @include adaptive-value(padding-right, 32, 16, 0);
+  padding-bottom: 48px;
+
+  .Header {
+
+  }
+}

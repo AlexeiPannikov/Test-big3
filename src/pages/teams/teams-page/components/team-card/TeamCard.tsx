@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef } from 'react'
 import cl from './TeamCard.module.scss'
-import { TeamModel } from '../../../../api/services/teams-service/models/TeamModel'
+import { TeamModel } from '../../../../../api/services/teams-service/models/TeamModel'
 
 interface IProps {
     team: TeamModel

@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import PageContainer from '../../components/page-container/PageContainer'
-import Toolbar from '../../components/toolbar/Toolbar'
-import Search from '../../ui/search/Search'
-import Button from '../../ui/button/Button'
-import { ButtonTypesEnum } from '../../ui/button/ButtonTypesEnum'
-import PageFooter from '../../components/page-footer/PageFooter'
-import FooterTools, { ISize } from '../../components/footer-tools/FooterTools'
-import { GetTeamsRequest } from '../../api/services/teams-service/request/GetTeamsRequest'
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks'
-import { getTeamsThunk } from '../../modules/teams-module/getTeamsThunk'
-import Content from '../../components/content/Content'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import PageContainer from '../../../components/page-container/PageContainer'
+import Toolbar from '../../../components/toolbar/Toolbar'
+import Search from '../../../ui/search/Search'
+import Button from '../../../ui/button/Button'
+import { ButtonTypesEnum } from '../../../ui/button/ButtonTypesEnum'
+import PageFooter from '../../../components/page-footer/PageFooter'
+import FooterTools, {
+    ISize,
+} from '../../../components/footer-tools/FooterTools'
+import { GetTeamsRequest } from '../../../api/services/teams-service/request/GetTeamsRequest'
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
+import { getTeamsThunk } from '../../../modules/teams-module/getTeamsThunk'
+import Content from '../../../components/content/Content'
 import TeamCard from './components/team-card/TeamCard'
+import Empty from '../../../components/empty/Empty'
 
 const TeamsPage = () => {
     const [name, setName] = useState<string>('')
     const [page, setPage] = useState<string>('')
     const [pageSize, setPageSize] = useState<string>('')
+    const navigate = useNavigate()
 
     const [searchParams, setSearchParams] = useSearchParams()
     const dispatch = useAppDispatch()
     const {
         response: { count, size, data: teams },
+        isLoading,
     } = useAppSelector((state) => state.teams)
 
     useEffect(() => {
@@ -64,6 +69,10 @@ const TeamsPage = () => {
         dispatch(getTeamsThunk(params))
     }
 
+    const goAddTeamPage = () => {
+        navigate('add-new-team')
+    }
+
     useEffect(() => {
         getTeams()
     }, [searchParams])
@@ -77,16 +86,28 @@ const TeamsPage = () => {
         <PageContainer>
             <Toolbar>
                 <Search onChange={searchChangeHandler} />
-                <Button type="button" buttonType={ButtonTypesEnum.Add}>
+                <Button
+                    type="button"
+                    buttonType={ButtonTypesEnum.Add}
+                    onClick={goAddTeamPage}
+                >
                     Add +
                 </Button>
             </Toolbar>
             {/* <div className={cl.ScrollBox}> */}
-            <Content itemNumber={Number(pageSize)}>
-                {teams.map((team) => (
-                    <TeamCard key={team.id} team={team} />
-                ))}
-            </Content>
+            {teams.length > 0 && (
+                <Content itemNumber={Number(pageSize)}>
+                    {teams.map((team) => (
+                        <TeamCard key={team.id} team={team} />
+                    ))}
+                </Content>
+            )}
+            {teams.length === 0 && !isLoading && (
+                <Empty
+                    img={require('../../../assets/images/empty-teams.png')}
+                    subtitle="Add new teams to continue"
+                />
+            )}
             {/* </div> */}
             <PageFooter>
                 <FooterTools
