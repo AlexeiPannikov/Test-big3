@@ -1,19 +1,31 @@
-import { $api } from '../../api'
 import { SignInRequest } from './request/SignInRequest'
 import { SignInResponse } from './response/SignInResponse'
 import { SignUpResponse } from './response/SignUpResponse'
 import { SignUpRequest } from './request/SignUpRequest'
+import { Service } from '../../Service'
 
-export class AuthorizationService {
-    static async signIn(data: SignInRequest): Promise<SignInResponse | null> {
-        const res = await $api.post('Auth/SignIn', data)
-        if (res) return res.data
-        return null
+class AuthorizationService extends Service {
+    async signIn(data: SignInRequest): Promise<SignInResponse> {
+        try {
+            return await this.request('Auth/SignIn', {
+                method: 'POST',
+                body: JSON.stringify(data),
+            })
+        } catch (e) {
+            throw new Error(e)
+        }
     }
 
-    static async signUp(data: SignUpRequest): Promise<SignUpResponse | null> {
-        const res = await $api.post('Auth/SignUp', data)
-        if (res) return res.data
-        return null
+    async signUp(data: SignUpRequest): Promise<SignUpResponse> {
+        try {
+            return await this.request('Auth/SignUp', {
+                method: 'POST',
+                body: JSON.stringify(data),
+            })
+        } catch (e) {
+            throw new Error(e)
+        }
     }
 }
+
+export default new AuthorizationService()

@@ -67,10 +67,12 @@ const SignInPage = () => {
             </section>
 
             <section className={cl.RightCol}>
-                <img
-                    src={require('../../assets/images/sign-in.png')}
-                    alt="basketball"
-                />
+                <div className={cl.Image}>
+                    <img
+                        src={require('../../assets/images/sign-in.png')}
+                        alt="basketball"
+                    />
+                </div>
             </section>
         </div>
     )

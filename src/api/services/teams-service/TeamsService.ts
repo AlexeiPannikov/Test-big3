@@ -1,13 +1,15 @@
-import { $api } from '../../api'
 import { GetTeamsResponse } from './response/GetTeamsResponse'
 import { GetTeamsRequest } from './request/GetTeamsRequest'
+import { Service } from '../../Service'
 
-export class TeamsService {
-    static async getTeams(
-        params: GetTeamsRequest
-    ): Promise<GetTeamsResponse> | null {
-        const res = await $api.get('Team/GetTeams', { params })
-        if (res) return res.data
-        return null
+class TeamsService extends Service {
+    async getTeams(params: GetTeamsRequest): Promise<GetTeamsResponse> {
+        try {
+            return await this.request(`Team/GetTeams`, {}, { ...params })
+        } catch (e) {
+            throw new Error(e)
+        }
     }
 }
+
+export default new TeamsService()

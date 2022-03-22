@@ -1,7 +1,7 @@
 import { AppDispatch } from '../../core/redux/store'
 import { SignInRequest } from '../../api/services/authorization-service/request/SignInRequest'
 import { signInError, signInSuccess, startSignIn } from './authorizationSlice'
-import { AuthorizationService } from '../../api/services/authorization-service/AuthorizationService'
+import AuthorizationService from '../../api/services/authorization-service/AuthorizationService'
 
 export const signInThunk = (data: SignInRequest) => {
     return async (dispatch: AppDispatch) => {

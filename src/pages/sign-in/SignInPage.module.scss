@@ -48,6 +48,15 @@
     @media (max-width: $tablet) {
       display: none;
     }
+
+    .Image {
+      width: 100%;
+
+      img {
+        object-fit: contain;
+        width: 100%;
+      }
+    }
   }
 }
 

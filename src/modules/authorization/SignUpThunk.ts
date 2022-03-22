@@ -1,5 +1,5 @@
 import { signUpError, signUpSuccess, startSignUp } from './authorizationSlice'
-import { AuthorizationService } from '../../api/services/authorization-service/AuthorizationService'
+import AuthorizationService from '../../api/services/authorization-service/AuthorizationService'
 import { AppDispatch } from '../../core/redux/store'
 import { SignUpRequest } from '../../api/services/authorization-service/request/SignUpRequest'
 
