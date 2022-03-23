@@ -21,7 +21,7 @@
     justify-content: flex-end;
     flex-direction: row-reverse;
     width: 100%;
-    @media (min-width: $tablet) {
+    @media (min-width: $tablet + 1) {
       display: none;
     }
   }

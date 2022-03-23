@@ -23,7 +23,7 @@ const SignUpPage = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            navigate('../sign-in')
+            navigate('../teams')
         }
 
         return () => {

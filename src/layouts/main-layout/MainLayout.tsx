@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import { CSSTransition } from 'react-transition-group'
+import classnames from 'classnames/bind'
 import cl from './MainLayout.module.scss'
 import HeaderLayout from '../header-layout/HeaderLayout'
 import SidebarLayout from '../sidebar-layout/SidebarLayout'
@@ -15,6 +15,16 @@ const MainLayout = () => {
             setIsOpen,
         }
     }, [isOpen])
+
+    const classesSidebar = classnames({
+        [cl.SidebarWrap]: true,
+        [cl.OpenSidebar]: isOpen,
+    })
+
+    const classesOverlay = classnames({
+        [cl.Overlay]: true,
+        [cl.OpenOverlay]: isOpen,
+    })
 
     const setSidebarState = () => {
         const width = window.innerWidth
@@ -39,41 +49,14 @@ const MainLayout = () => {
                 </div>
 
                 <div className={cl.SidebarMainWrapper}>
-                    <CSSTransition
-                        in={isOpen}
-                        timeout={500}
-                        mountOnEnter
-                        unmountOnExit
-                        classNames={{
-                            enter: cl.EnterSb,
-                            enterActive: cl.EnterActiveSb,
-                            exit: cl.ExitSb,
-                            exitActive: cl.ExitActiveSb,
-                        }}
-                    >
-                        <div className={cl.SidebarWrap}>
-                            <SidebarLayout />
-                        </div>
-                    </CSSTransition>
+                    <div className={classesSidebar}>
+                        <SidebarLayout />
+                    </div>
 
                     <main className={cl.Main}>
                         <Outlet />
                     </main>
-
-                    <CSSTransition
-                        in={isOpen}
-                        timeout={200}
-                        mountOnEnter
-                        unmountOnExit
-                        classNames={{
-                            enter: cl.EnterOv,
-                            enterActive: cl.EnterActiveOv,
-                            exit: cl.ExitOv,
-                            exitActive: cl.ExitActiveOv,
-                        }}
-                    >
-                        <div className={cl.Overlay} />
-                    </CSSTransition>
+                    <div className={classesOverlay} />
                 </div>
             </div>
         </MobileMenuContext.Provider>
